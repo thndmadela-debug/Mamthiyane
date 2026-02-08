@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mamthiyane 💙</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Montserrat:wght@200;300;400;500&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary-dark: #1a1a1a;
+            --primary-gold: #c9a961;
+            --accent-gold: #d4af37;
+            --cream: #f5f1e8;
+            --white: #ffffff;
+            --gray: #666666;
+            --blue: #4a90e2;
+        }
+
+        * { 
+            margin: 0; 
+            padding: 0; 
+            box-sizing: border-box; 
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--cream);
+            color: var(--primary-dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        header {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background:
+                radial-gradient(circle at 20% 50%, rgba(201,169,97,0.1), transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(212,175,55,0.08), transparent 50%);
+        }
+
+        .header-content { 
+            text-align: center; 
+            z-index: 1; 
+            padding: 2rem;
+        }
+
+        h1 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(3rem, 10vw, 6rem);
+            font-weight: 300;
+            color: var(--white);
+            letter-spacing: 0.15em;
+            margin-bottom: 1rem;
+        }
+
+        .tagline {
+            font-size: clamp(0.8rem, 2vw, 1rem);
+            color: var(--primary-gold);
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+        }
+
+        section { 
+            padding: 8rem 5%; 
+            max-width: 1400px; 
+            margin: auto; 
+        }
+
+        .section-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(2rem, 5vw, 3rem);
+            text-align: center;
+            margin-bottom: 4rem;
+            color: var(--primary-dark);
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 5rem;
+            align-items: center;
+        }
+
+        .about-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--gray);
+        }
+
+        .image-placeholder,
+        .gallery-item,
+        .featured-image {
+            background-size: cover;
+            background-position: center;
+            background-color: var(--primary-gold);
+            transition: transform 0.3s ease;
+        }
+
+        .image-placeholder:hover,
+        .gallery-item:hover,
+        .featured-image:hover {
+            transform: scale(1.02);
+        }
+
+        .image-placeholder {
+            aspect-ratio: 4/5;
+            border: 2px solid var(--primary-gold);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .gallery-section { 
+            background: var(--white); 
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .gallery-item {
+            aspect-ratio: 1;
+            border: 1px solid var(--primary-gold);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .featured-section {
+            background: var(--primary-dark);
+            color: var(--white);
+        }
+
+        .featured-section .section-title {
+            color: var(--white);
+        }
+
+        .featured-content {
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .featured-image {
+            aspect-ratio: 16/11;
+            border: 2px solid var(--primary-gold);
+            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+        }
+
+        .featured-text h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            color: var(--primary-gold);
+        }
+
+        .button-container {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+
+        button {
+            padding: 1.2rem 2.5rem;
+            font-size: 1.2rem;
+            font-family: 'Cormorant Garamond', serif;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid var(--primary-gold);
+            background: transparent;
+            color: var(--white);
+            font-weight: 500;
+            letter-spacing: 0.1em;
+        }
+
+        button:hover {
+            background: var(--primary-gold);
+            color: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(201,169,97,0.3);
+        }
+
+        #response-message {
+            margin-top: 2rem;
+            font-size: 1.3rem;
+            color: var(--primary-gold);
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 500;
+            min-height: 2rem;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .fade-in-section {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .fade-in-section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        footer {
+            background: var(--primary-dark);
+            color: var(--primary-gold);
+            text-align: center;
+            padding: 2rem;
+            font-size: 0.9rem;
+            letter-spacing: 0.1em;
+        }
+
+        @media (max-width: 900px) {
+            .about-content,
+            .featured-content {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+
+            section {
+                padding: 4rem 5%;
+            }
+
+            .gallery-grid {
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+                gap: 1rem;
+            }
+
+            .button-container {
+                flex-direction: column;
+            }
+
+            button {
+                width: 100%;
+            }
+        }
+
+        @media (max-width: 600px) {
+            h1 {
+                letter-spacing: 0.1em;
+            }
+
+            .tagline {
+                letter-spacing: 0.2em;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <div class="header-content">
+        <h1>Mamthiyane 💙</h1>
+        <p class="tagline">Too many more reasons why...</p>
+    </div>
+</header>
+
+<section class="fade-in-section">
+    <h2 class="section-title">About</h2>
+    <div class="about-content">
+        <div class="about-text">
+            <p>
+                Welcome to Mamthiyane.com, where Home lies...
+            </p>
+            <p style="margin-top: 1.5rem;">
+                A special place created with love, celebrating moments that matter and memories we cherish together.
+            </p>
+        </div>
+
+        <div class="image-placeholder"
+             style="background-image: url('images/her2.jpeg');">
+        </div>
+    </div>
+</section>
+
+<section class="gallery-section fade-in-section">
+    <h2 class="section-title">Gallery</h2>
+    <div class="gallery-grid">
+        <div class="gallery-item" style="background-image: url('images/us3.jpeg');"></div>
+        <div class="gallery-item" style="background-image: url('images/6.jpeg');"></div>
+        <div class="gallery-item" style="background-image: url('images/7.jpeg');"></div>
+        <div class="gallery-item" style="background-image: url('images/lunatic.jpeg');"></div>
+    </div>
+</section>
+
+<section class="featured-section fade-in-section">
+    <h2 class="section-title">Featured</h2>
+    <div class="featured-content">
+        <div class="featured-image" style="background-image: url('images/4.jpeg');"></div>
+
+        <div class="featured-text">
+            <h3>Will You Be My Valentine? 💙</h3>
+            <div class="button-container">
+                <button onclick="handleYes()">YES 💙</button>
+                <button onclick="handleNo()">No</button>
+            </div>
+            <div id="response-message"></div>
+        </div>
+    </div>
+</section>
+
+<footer>
+    <p>Made with 💙 • Mamthiyane.com</p>
+</footer>
+
+<script>
+    function handleYes() {
+        const message = document.getElementById("response-message");
+        message.innerHTML = "You just made me the happiest man alive 💙";
+        
+        // Add confetti effect or celebration animation here if desired
+        celebrateAnswer();
+    }
+
+    function handleNo() {
+        alert("Nice try 😄");
+    }
+
+    function celebrateAnswer() {
+        // Simple celebration - you can enhance this
+        const message = document.getElementById("response-message");
+        message.style.fontSize = "1.5rem";
+    }
+
+    // Intersection Observer for fade-in animations
+    const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add("visible");
+            }
+        });
+    }, {
+        threshold: 0.1
+    });
+
+    document.querySelectorAll(".fade-in-section").forEach(section => {
+        observer.observe(section);
+    });
+
+    // Smooth scroll behavior
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                target.scrollIntoView({ behavior: 'smooth' });
+            }
+        });
+    });
+</script>
+
+</body>
+</html>
